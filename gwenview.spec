@@ -4,7 +4,7 @@
 #
 Name     : gwenview
 Version  : 18.08.3
-Release  : 2
+Release  : 3
 URL      : https://download.kde.org/stable/applications/18.08.3/src/gwenview-18.08.3.tar.xz
 Source0  : https://download.kde.org/stable/applications/18.08.3/src/gwenview-18.08.3.tar.xz
 Summary  : No detailed summary available
@@ -33,14 +33,6 @@ BuildRequires : qtbase-dev mesa-dev
 %description
 The Independent JPEG Group's JPEG software
 ==========================================
-
-%package abi
-Summary: abi components for the gwenview package.
-Group: Default
-
-%description abi
-abi components for the gwenview package.
-
 
 %package bin
 Summary: bin components for the gwenview package.
@@ -102,7 +94,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1542393367
+export SOURCE_DATE_EPOCH=1543359412
 mkdir -p clr-build
 pushd clr-build
 %cmake ..
@@ -110,7 +102,7 @@ make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1542393367
+export SOURCE_DATE_EPOCH=1543359412
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/gwenview
 cp COPYING %{buildroot}/usr/share/package-licenses/gwenview/COPYING
@@ -122,10 +114,6 @@ popd
 
 %files
 %defattr(-,root,root,-)
-
-%files abi
-%defattr(-,root,root,-)
-/usr/share/abi/libgwenviewlib.so.5.abi
 
 %files bin
 %defattr(-,root,root,-)
