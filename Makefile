@@ -1,5 +1,5 @@
 PKG_NAME := gwenview
-URL = https://download.kde.org/stable/applications/18.08.3/src/gwenview-18.08.3.tar.xz
+URL = https://github.com/KDE/gwenview/archive/v18.12.1.tar.gz
 ARCHIVES = 
 
 include ../common/Makefile.common
