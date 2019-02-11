@@ -1,0 +1,25 @@
+From 2681cee1a8cb8fbd1c20e79bb1c387d0d7b8a532 Mon Sep 17 00:00:00 2001
+From: Laurent Montel <montel@kde.org>
+Date: Sat, 22 Dec 2018 14:59:50 +0100
+Subject: [PATCH 05/16] Fix mem leak found by asan
+
+---
+ app/browsemainpage.cpp | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/app/browsemainpage.cpp b/app/browsemainpage.cpp
+index 27c1520b..b502dcc7 100644
+--- a/app/browsemainpage.cpp
++++ b/app/browsemainpage.cpp
+@@ -344,6 +344,8 @@ BrowseMainPage::BrowseMainPage(QWidget* parent, KActionCollection* actionCollect
+ 
+ BrowseMainPage::~BrowseMainPage()
+ {
++    d->mSelectedMediaItems->clear();
++    delete d->mSelectedMediaItems;
+     delete d;
+ }
+ 
+-- 
+2.20.1
+

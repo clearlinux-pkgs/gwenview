@@ -1,0 +1,33 @@
+From 534107b8fa265f6f78a96d63c723a69d6d0ca623 Mon Sep 17 00:00:00 2001
+From: "Anselmo L. S. Melo" <anselmo.melo@intel.com>
+Date: Sun, 10 Feb 2019 20:55:02 -0800
+Subject: [PATCH] Fix build of auto tests
+
+Also related to exif2 0.27 & exceptions.
+
+---
+ tests/auto/CMakeLists.txt | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+diff --git a/tests/auto/CMakeLists.txt b/tests/auto/CMakeLists.txt
+index cfe7e655..5042c8f5 100644
+--- a/tests/auto/CMakeLists.txt
++++ b/tests/auto/CMakeLists.txt
+@@ -22,6 +22,14 @@ include_directories(
+ 
+ set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_BINARY_DIR})
+ 
++kde_source_files_enable_exceptions(
++    documenttest.cpp
++    imagemetainfomodeltest.cpp
++    timeutilstest.cpp
++    cmsprofiletest.cpp
++    jpegcontenttest.cpp
++    )
++
+ gv_add_unit_test(imagescalertest testutils.cpp)
+ gv_add_unit_test(paintutilstest)
+ if (KF5KDcraw_FOUND)
+-- 
+2.20.1
+

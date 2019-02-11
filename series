@@ -1,0 +1,4 @@
+0001-Fix-mem-leak-found-by-asan.patch
+0002-Use-forward-declaration-for-Exiv2-Image-port-to-std-.patch
+0003-Compile-more-files-with-enabled-exceptions-required-.patch
+build.patch

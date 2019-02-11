@@ -1,6 +1,10 @@
 # This file contains additional build requirements that did not get
 # picked up automatically. One name per line, no whitespace.
-libkipi-dev
-exiv2-dev
+baloo-dev
 cfitsio-dev
+exiv2-dev
 libkdcraw-dev
+libkipi-dev
+kactivities-dev
+kfilemetadata-dev
+phonon-dev
