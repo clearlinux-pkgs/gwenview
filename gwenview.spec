@@ -6,7 +6,7 @@
 #
 Name     : gwenview
 Version  : 18.12.2
-Release  : 5
+Release  : 6
 URL      : https://download.kde.org/stable/applications/18.12.2/src/gwenview-18.12.2.tar.xz
 Source0  : https://download.kde.org/stable/applications/18.12.2/src/gwenview-18.12.2.tar.xz
 Source99 : https://download.kde.org/stable/applications/18.12.2/src/gwenview-18.12.2.tar.xz.sig
@@ -18,6 +18,8 @@ Requires: gwenview-data = %{version}-%{release}
 Requires: gwenview-lib = %{version}-%{release}
 Requires: gwenview-license = %{version}-%{release}
 Requires: gwenview-locales = %{version}-%{release}
+Requires: cfitsio
+Requires: libkdcraw
 BuildRequires : baloo-dev
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
@@ -108,7 +110,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1549922315
+export SOURCE_DATE_EPOCH=1550178332
 mkdir -p clr-build
 pushd clr-build
 %cmake ..
@@ -116,7 +118,7 @@ make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1549922315
+export SOURCE_DATE_EPOCH=1550178332
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/gwenview
 cp COPYING %{buildroot}/usr/share/package-licenses/gwenview/COPYING
