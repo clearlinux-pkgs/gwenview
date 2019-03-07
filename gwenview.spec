@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : gwenview
-Version  : 18.12.2
-Release  : 6
-URL      : https://download.kde.org/stable/applications/18.12.2/src/gwenview-18.12.2.tar.xz
-Source0  : https://download.kde.org/stable/applications/18.12.2/src/gwenview-18.12.2.tar.xz
-Source99 : https://download.kde.org/stable/applications/18.12.2/src/gwenview-18.12.2.tar.xz.sig
+Version  : 18.12.3
+Release  : 7
+URL      : https://download.kde.org/stable/applications/18.12.3/src/gwenview-18.12.3.tar.xz
+Source0  : https://download.kde.org/stable/applications/18.12.3/src/gwenview-18.12.3.tar.xz
+Source99 : https://download.kde.org/stable/applications/18.12.3/src/gwenview-18.12.3.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0
@@ -99,7 +99,7 @@ locales components for the gwenview package.
 
 
 %prep
-%setup -q -n gwenview-18.12.2
+%setup -q -n gwenview-18.12.3
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
@@ -110,15 +110,16 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1550178332
+export SOURCE_DATE_EPOCH=1551992889
 mkdir -p clr-build
 pushd clr-build
+export LDFLAGS="${LDFLAGS} -fno-lto"
 %cmake ..
 make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1550178332
+export SOURCE_DATE_EPOCH=1551992889
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/gwenview
 cp COPYING %{buildroot}/usr/share/package-licenses/gwenview/COPYING
