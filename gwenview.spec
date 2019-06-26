@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : gwenview
-Version  : 19.04.1
-Release  : 8
-URL      : https://download.kde.org/stable/applications/19.04.1/src/gwenview-19.04.1.tar.xz
-Source0  : https://download.kde.org/stable/applications/19.04.1/src/gwenview-19.04.1.tar.xz
-Source99 : https://download.kde.org/stable/applications/19.04.1/src/gwenview-19.04.1.tar.xz.sig
+Version  : 19.04.2
+Release  : 9
+URL      : https://download.kde.org/stable/applications/19.04.2/src/gwenview-19.04.2.tar.xz
+Source0  : https://download.kde.org/stable/applications/19.04.2/src/gwenview-19.04.2.tar.xz
+Source99 : https://download.kde.org/stable/applications/19.04.2/src/gwenview-19.04.2.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0
@@ -23,12 +23,14 @@ Requires: libkdcraw
 BuildRequires : baloo-dev
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
+BuildRequires : cfitsio
 BuildRequires : cfitsio-dev
 BuildRequires : exiv2-dev
 BuildRequires : kactivities-dev
 BuildRequires : kfilemetadata-dev
 BuildRequires : libX11-dev libICE-dev libSM-dev libXau-dev libXcomposite-dev libXcursor-dev libXdamage-dev libXdmcp-dev libXext-dev libXfixes-dev libXft-dev libXi-dev libXinerama-dev libXi-dev libXmu-dev libXpm-dev libXrandr-dev libXrender-dev libXres-dev libXScrnSaver-dev libXt-dev libXtst-dev libXv-dev libXxf86misc-dev libXxf86vm-dev
 BuildRequires : libjpeg-turbo-dev
+BuildRequires : libkdcraw
 BuildRequires : libkdcraw-dev
 BuildRequires : libkipi-dev
 BuildRequires : libpng-dev
@@ -37,7 +39,6 @@ BuildRequires : pkg-config
 BuildRequires : pkgconfig(exiv2)
 BuildRequires : pkgconfig(lcms2)
 BuildRequires : qtbase-dev mesa-dev
-Patch1: build.patch
 
 %description
 The Independent JPEG Group's JPEG software
@@ -96,25 +97,27 @@ locales components for the gwenview package.
 
 
 %prep
-%setup -q -n gwenview-19.04.1
-%patch1 -p1
+%setup -q -n gwenview-19.04.2
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1558334674
+export SOURCE_DATE_EPOCH=1561562256
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
-export LDFLAGS="${LDFLAGS} -fno-lto"
+export CFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$CFLAGS -fno-lto "
+export FFLAGS="$CFLAGS -fno-lto "
+export CXXFLAGS="$CXXFLAGS -fno-lto "
 %cmake ..
 make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1558334674
+export SOURCE_DATE_EPOCH=1561562256
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/gwenview
 cp COPYING %{buildroot}/usr/share/package-licenses/gwenview/COPYING
