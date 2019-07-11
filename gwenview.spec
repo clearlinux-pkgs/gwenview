@@ -5,12 +5,12 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : gwenview
-Version  : 19.04.2
-Release  : 9
-URL      : https://download.kde.org/stable/applications/19.04.2/src/gwenview-19.04.2.tar.xz
-Source0  : https://download.kde.org/stable/applications/19.04.2/src/gwenview-19.04.2.tar.xz
-Source99 : https://download.kde.org/stable/applications/19.04.2/src/gwenview-19.04.2.tar.xz.sig
-Summary  : No detailed summary available
+Version  : 19.04.3
+Release  : 10
+URL      : https://download.kde.org/stable/applications/19.04.3/src/gwenview-19.04.3.tar.xz
+Source0  : https://download.kde.org/stable/applications/19.04.3/src/gwenview-19.04.3.tar.xz
+Source99 : https://download.kde.org/stable/applications/19.04.3/src/gwenview-19.04.3.tar.xz.sig
+Summary  : A fast and easy to use image viewer
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0
 Requires: gwenview-bin = %{version}-%{release}
@@ -97,14 +97,14 @@ locales components for the gwenview package.
 
 
 %prep
-%setup -q -n gwenview-19.04.2
+%setup -q -n gwenview-19.04.3
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1561562256
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1562855459
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -117,7 +117,7 @@ make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1561562256
+export SOURCE_DATE_EPOCH=1562855459
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/gwenview
 cp COPYING %{buildroot}/usr/share/package-licenses/gwenview/COPYING
