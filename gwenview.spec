@@ -6,11 +6,11 @@
 #
 Name     : gwenview
 Version  : 19.12.3
-Release  : 18
+Release  : 19
 URL      : https://download.kde.org/stable/release-service/19.12.3/src/gwenview-19.12.3.tar.xz
 Source0  : https://download.kde.org/stable/release-service/19.12.3/src/gwenview-19.12.3.tar.xz
 Source1  : https://download.kde.org/stable/release-service/19.12.3/src/gwenview-19.12.3.tar.xz.sig
-Summary  : A fast and easy to use image viewer
+Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0
 Requires: gwenview-bin = %{version}-%{release}
@@ -106,10 +106,9 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1583435673
+export SOURCE_DATE_EPOCH=1583541231
 mkdir -p clr-build
 pushd clr-build
-# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$CFLAGS -fno-lto "
@@ -120,7 +119,7 @@ make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1583435673
+export SOURCE_DATE_EPOCH=1583541231
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/gwenview
 cp %{_builddir}/gwenview-19.12.3/COPYING %{buildroot}/usr/share/package-licenses/gwenview/a21ac62aee75f8fcb26b1de6fc90e5eea271854c
