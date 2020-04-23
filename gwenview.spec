@@ -5,12 +5,12 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : gwenview
-Version  : 19.12.3
-Release  : 19
-URL      : https://download.kde.org/stable/release-service/19.12.3/src/gwenview-19.12.3.tar.xz
-Source0  : https://download.kde.org/stable/release-service/19.12.3/src/gwenview-19.12.3.tar.xz
-Source1  : https://download.kde.org/stable/release-service/19.12.3/src/gwenview-19.12.3.tar.xz.sig
-Summary  : No detailed summary available
+Version  : 20.04.0
+Release  : 20
+URL      : https://download.kde.org/stable/release-service/20.04.0/src/gwenview-20.04.0.tar.xz
+Source0  : https://download.kde.org/stable/release-service/20.04.0/src/gwenview-20.04.0.tar.xz
+Source1  : https://download.kde.org/stable/release-service/20.04.0/src/gwenview-20.04.0.tar.xz.sig
+Summary  : A fast and easy to use image viewer
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0
 Requires: gwenview-bin = %{version}-%{release}
@@ -98,17 +98,18 @@ locales components for the gwenview package.
 
 
 %prep
-%setup -q -n gwenview-19.12.3
-cd %{_builddir}/gwenview-19.12.3
+%setup -q -n gwenview-20.04.0
+cd %{_builddir}/gwenview-20.04.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1583541231
+export SOURCE_DATE_EPOCH=1587673977
 mkdir -p clr-build
 pushd clr-build
+# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$CFLAGS -fno-lto "
@@ -119,11 +120,11 @@ make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1583541231
+export SOURCE_DATE_EPOCH=1587673977
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/gwenview
-cp %{_builddir}/gwenview-19.12.3/COPYING %{buildroot}/usr/share/package-licenses/gwenview/a21ac62aee75f8fcb26b1de6fc90e5eea271854c
-cp %{_builddir}/gwenview-19.12.3/COPYING.DOC %{buildroot}/usr/share/package-licenses/gwenview/1bd373e4851a93027ba70064bd7dbdc6827147e1
+cp %{_builddir}/gwenview-20.04.0/COPYING %{buildroot}/usr/share/package-licenses/gwenview/a21ac62aee75f8fcb26b1de6fc90e5eea271854c
+cp %{_builddir}/gwenview-20.04.0/COPYING.DOC %{buildroot}/usr/share/package-licenses/gwenview/1bd373e4851a93027ba70064bd7dbdc6827147e1
 pushd clr-build
 %make_install
 popd
@@ -161,6 +162,7 @@ popd
 /usr/share/kservices5/gvpart.desktop
 /usr/share/kxmlgui5/gvpart/gvpart.rc
 /usr/share/metainfo/org.kde.gwenview.appdata.xml
+/usr/share/qlogging-categories5/gwenview.categories
 /usr/share/solid/actions/gwenview_importer.desktop
 /usr/share/solid/actions/gwenview_importer_camera.desktop
 
@@ -219,7 +221,7 @@ popd
 %defattr(-,root,root,-)
 /usr/lib64/libgwenviewlib.so.4.97.0
 /usr/lib64/libgwenviewlib.so.5
-/usr/lib64/qt5/plugins/gvpart.so
+/usr/lib64/qt5/plugins/kf5/parts/gvpart.so
 
 %files license
 %defattr(0644,root,root,0755)
