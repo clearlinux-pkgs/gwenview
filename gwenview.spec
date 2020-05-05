@@ -6,11 +6,11 @@
 #
 Name     : gwenview
 Version  : 20.04.0
-Release  : 20
+Release  : 21
 URL      : https://download.kde.org/stable/release-service/20.04.0/src/gwenview-20.04.0.tar.xz
 Source0  : https://download.kde.org/stable/release-service/20.04.0/src/gwenview-20.04.0.tar.xz
 Source1  : https://download.kde.org/stable/release-service/20.04.0/src/gwenview-20.04.0.tar.xz.sig
-Summary  : A fast and easy to use image viewer
+Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0
 Requires: gwenview-bin = %{version}-%{release}
@@ -26,6 +26,7 @@ BuildRequires : buildreq-kde
 BuildRequires : cfitsio
 BuildRequires : cfitsio-dev
 BuildRequires : exiv2-dev
+BuildRequires : extra-cmake-modules-data
 BuildRequires : kactivities-dev
 BuildRequires : kfilemetadata-dev
 BuildRequires : libX11-dev libICE-dev libSM-dev libXau-dev libXcomposite-dev libXcursor-dev libXdamage-dev libXdmcp-dev libXext-dev libXfixes-dev libXft-dev libXi-dev libXinerama-dev libXi-dev libXmu-dev libXpm-dev libXrandr-dev libXrender-dev libXres-dev libXScrnSaver-dev libXt-dev libXtst-dev libXv-dev libXxf86misc-dev libXxf86vm-dev
@@ -39,6 +40,7 @@ BuildRequires : pkg-config
 BuildRequires : pkgconfig(exiv2)
 BuildRequires : pkgconfig(lcms2)
 BuildRequires : purpose-dev
+BuildRequires : qtbase-dev
 BuildRequires : qtbase-dev mesa-dev
 
 %description
@@ -106,21 +108,20 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1587673977
+export SOURCE_DATE_EPOCH=1588701304
 mkdir -p clr-build
 pushd clr-build
-# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
-export FCFLAGS="$CFLAGS -fno-lto "
-export FFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$FFLAGS -fno-lto "
+export FFLAGS="$FFLAGS -fno-lto "
 export CXXFLAGS="$CXXFLAGS -fno-lto "
 %cmake ..
 make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1587673977
+export SOURCE_DATE_EPOCH=1588701304
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/gwenview
 cp %{_builddir}/gwenview-20.04.0/COPYING %{buildroot}/usr/share/package-licenses/gwenview/a21ac62aee75f8fcb26b1de6fc90e5eea271854c
