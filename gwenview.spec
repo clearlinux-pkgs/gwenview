@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : gwenview
-Version  : 20.04.0
-Release  : 21
-URL      : https://download.kde.org/stable/release-service/20.04.0/src/gwenview-20.04.0.tar.xz
-Source0  : https://download.kde.org/stable/release-service/20.04.0/src/gwenview-20.04.0.tar.xz
-Source1  : https://download.kde.org/stable/release-service/20.04.0/src/gwenview-20.04.0.tar.xz.sig
+Version  : 20.04.1
+Release  : 22
+URL      : https://download.kde.org/stable/release-service/20.04.1/src/gwenview-20.04.1.tar.xz
+Source0  : https://download.kde.org/stable/release-service/20.04.1/src/gwenview-20.04.1.tar.xz
+Source1  : https://download.kde.org/stable/release-service/20.04.1/src/gwenview-20.04.1.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0
@@ -100,15 +100,15 @@ locales components for the gwenview package.
 
 
 %prep
-%setup -q -n gwenview-20.04.0
-cd %{_builddir}/gwenview-20.04.0
+%setup -q -n gwenview-20.04.1
+cd %{_builddir}/gwenview-20.04.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1588701304
+export SOURCE_DATE_EPOCH=1589846063
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -121,11 +121,11 @@ make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1588701304
+export SOURCE_DATE_EPOCH=1589846063
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/gwenview
-cp %{_builddir}/gwenview-20.04.0/COPYING %{buildroot}/usr/share/package-licenses/gwenview/a21ac62aee75f8fcb26b1de6fc90e5eea271854c
-cp %{_builddir}/gwenview-20.04.0/COPYING.DOC %{buildroot}/usr/share/package-licenses/gwenview/1bd373e4851a93027ba70064bd7dbdc6827147e1
+cp %{_builddir}/gwenview-20.04.1/COPYING %{buildroot}/usr/share/package-licenses/gwenview/a21ac62aee75f8fcb26b1de6fc90e5eea271854c
+cp %{_builddir}/gwenview-20.04.1/COPYING.DOC %{buildroot}/usr/share/package-licenses/gwenview/1bd373e4851a93027ba70064bd7dbdc6827147e1
 pushd clr-build
 %make_install
 popd
