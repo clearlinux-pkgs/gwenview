@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : gwenview
-Version  : 20.12.3
-Release  : 30
-URL      : https://download.kde.org/stable/release-service/20.12.3/src/gwenview-20.12.3.tar.xz
-Source0  : https://download.kde.org/stable/release-service/20.12.3/src/gwenview-20.12.3.tar.xz
-Source1  : https://download.kde.org/stable/release-service/20.12.3/src/gwenview-20.12.3.tar.xz.sig
+Version  : 21.04.0
+Release  : 31
+URL      : https://download.kde.org/stable/release-service/21.04.0/src/gwenview-21.04.0.tar.xz
+Source0  : https://download.kde.org/stable/release-service/21.04.0/src/gwenview-21.04.0.tar.xz
+Source1  : https://download.kde.org/stable/release-service/21.04.0/src/gwenview-21.04.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0
@@ -37,7 +37,6 @@ BuildRequires : libkipi-dev
 BuildRequires : libpng-dev
 BuildRequires : phonon-dev
 BuildRequires : pkg-config
-BuildRequires : pkgconfig(exiv2)
 BuildRequires : pkgconfig(lcms2)
 BuildRequires : purpose-dev
 BuildRequires : qtbase-dev
@@ -101,15 +100,15 @@ locales components for the gwenview package.
 
 
 %prep
-%setup -q -n gwenview-20.12.3
-cd %{_builddir}/gwenview-20.12.3
+%setup -q -n gwenview-21.04.0
+cd %{_builddir}/gwenview-21.04.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1618656868
+export SOURCE_DATE_EPOCH=1619203964
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -122,11 +121,11 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1618656868
+export SOURCE_DATE_EPOCH=1619203964
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/gwenview
-cp %{_builddir}/gwenview-20.12.3/COPYING %{buildroot}/usr/share/package-licenses/gwenview/a21ac62aee75f8fcb26b1de6fc90e5eea271854c
-cp %{_builddir}/gwenview-20.12.3/COPYING.DOC %{buildroot}/usr/share/package-licenses/gwenview/1bd373e4851a93027ba70064bd7dbdc6827147e1
+cp %{_builddir}/gwenview-21.04.0/COPYING %{buildroot}/usr/share/package-licenses/gwenview/a21ac62aee75f8fcb26b1de6fc90e5eea271854c
+cp %{_builddir}/gwenview-21.04.0/COPYING.DOC %{buildroot}/usr/share/package-licenses/gwenview/1bd373e4851a93027ba70064bd7dbdc6827147e1
 pushd clr-build
 %make_install
 popd
@@ -160,9 +159,7 @@ popd
 /usr/share/icons/hicolor/64x64/apps/gwenview.png
 /usr/share/kconf_update/gwenview-imageview-alphabackgroundmode-update.pl
 /usr/share/kconf_update/gwenview.upd
-/usr/share/kservices5/ServiceMenus/slideshow.desktop
 /usr/share/kservices5/gvpart.desktop
-/usr/share/kxmlgui5/gvpart/gvpart.rc
 /usr/share/metainfo/org.kde.gwenview.appdata.xml
 /usr/share/qlogging-categories5/gwenview.categories
 /usr/share/solid/actions/gwenview_importer.desktop
@@ -211,8 +208,6 @@ popd
 /usr/share/doc/HTML/pt/gwenview/index.docbook
 /usr/share/doc/HTML/pt_BR/gwenview/index.cache.bz2
 /usr/share/doc/HTML/pt_BR/gwenview/index.docbook
-/usr/share/doc/HTML/ru/gwenview/index.cache.bz2
-/usr/share/doc/HTML/ru/gwenview/index.docbook
 /usr/share/doc/HTML/sr/gwenview/index.cache.bz2
 /usr/share/doc/HTML/sr/gwenview/index.docbook
 /usr/share/doc/HTML/sv/gwenview/index.cache.bz2
@@ -230,6 +225,7 @@ popd
 %defattr(-,root,root,-)
 /usr/lib64/libgwenviewlib.so.4.97.0
 /usr/lib64/libgwenviewlib.so.5
+/usr/lib64/qt5/plugins/kf5/kfileitemaction/slideshowfileitemaction.so
 /usr/lib64/qt5/plugins/kf5/parts/gvpart.so
 
 %files license
