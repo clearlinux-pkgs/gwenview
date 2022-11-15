@@ -6,7 +6,7 @@
 #
 Name     : gwenview
 Version  : 22.08.3
-Release  : 48
+Release  : 49
 URL      : https://download.kde.org/stable/release-service/22.08.3/src/gwenview-22.08.3.tar.xz
 Source0  : https://download.kde.org/stable/release-service/22.08.3/src/gwenview-22.08.3.tar.xz
 Source1  : https://download.kde.org/stable/release-service/22.08.3/src/gwenview-22.08.3.tar.xz.sig
