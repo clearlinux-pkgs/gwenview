@@ -6,11 +6,11 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : gwenview
-Version  : 23.04.0
-Release  : 55
-URL      : https://download.kde.org/stable/release-service/23.04.0/src/gwenview-23.04.0.tar.xz
-Source0  : https://download.kde.org/stable/release-service/23.04.0/src/gwenview-23.04.0.tar.xz
-Source1  : https://download.kde.org/stable/release-service/23.04.0/src/gwenview-23.04.0.tar.xz.sig
+Version  : 23.04.1
+Release  : 56
+URL      : https://download.kde.org/stable/release-service/23.04.1/src/gwenview-23.04.1.tar.xz
+Source0  : https://download.kde.org/stable/release-service/23.04.1/src/gwenview-23.04.1.tar.xz
+Source1  : https://download.kde.org/stable/release-service/23.04.1/src/gwenview-23.04.1.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-3-Clause GFDL-1.2 GPL-2.0
@@ -41,11 +41,11 @@ BuildRequires : libpng-dev
 BuildRequires : phonon-dev
 BuildRequires : pkg-config
 BuildRequires : pkgconfig(lcms2)
-BuildRequires : pkgconfig(wayland-protocols)
 BuildRequires : purpose-dev
 BuildRequires : qt6base-dev
 BuildRequires : qtbase-dev mesa-dev
 BuildRequires : tiff-dev
+BuildRequires : wayland-protocols-dev plasma-wayland-protocols-dev
 # Suppress stripping binaries
 %define __strip /bin/true
 %define debug_package %{nil}
@@ -107,43 +107,63 @@ locales components for the gwenview package.
 
 
 %prep
-%setup -q -n gwenview-23.04.0
-cd %{_builddir}/gwenview-23.04.0
+%setup -q -n gwenview-23.04.1
+cd %{_builddir}/gwenview-23.04.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1682029562
+export SOURCE_DATE_EPOCH=1684867464
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
-export CFLAGS="$CFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FCFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
-export CXXFLAGS="$CXXFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CFLAGS="$CFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FCFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export CXXFLAGS="$CXXFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+%cmake ..
+make  %{?_smp_mflags}
+popd
+mkdir -p clr-build-avx2
+pushd clr-build-avx2
+export GCC_IGNORE_WERROR=1
+export CFLAGS="$CFLAGS -O3 -Wl,-z,x86-64-v3 -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export FCFLAGS="$FFLAGS -O3 -Wl,-z,x86-64-v3 -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export FFLAGS="$FFLAGS -O3 -Wl,-z,x86-64-v3 -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export CXXFLAGS="$CXXFLAGS -O3 -Wl,-z,x86-64-v3 -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export CFLAGS="$CFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
+export CXXFLAGS="$CXXFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
+export FFLAGS="$FFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
+export FCFLAGS="$FCFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
 %cmake ..
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1682029562
+export SOURCE_DATE_EPOCH=1684867464
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/gwenview
 cp %{_builddir}/gwenview-%{version}/CMakePresets.json.license %{buildroot}/usr/share/package-licenses/gwenview/29fb05b49e12a380545499938c4879440bd8851e || :
 cp %{_builddir}/gwenview-%{version}/COPYING %{buildroot}/usr/share/package-licenses/gwenview/a21ac62aee75f8fcb26b1de6fc90e5eea271854c || :
 cp %{_builddir}/gwenview-%{version}/COPYING.DOC %{buildroot}/usr/share/package-licenses/gwenview/1bd373e4851a93027ba70064bd7dbdc6827147e1 || :
+pushd clr-build-avx2
+%make_install_v3  || :
+popd
 pushd clr-build
 %make_install
 popd
 %find_lang gwenview
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot} %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
 
 %files bin
 %defattr(-,root,root,-)
+/V3/usr/bin/gwenview
+/V3/usr/bin/gwenview_importer
 /usr/bin/gwenview
 /usr/bin/gwenview_importer
 
@@ -238,6 +258,10 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
+/V3/usr/lib64/libgwenviewlib.so.4.97.0
+/V3/usr/lib64/libgwenviewlib.so.5
+/V3/usr/lib64/qt5/plugins/kf5/kfileitemaction/slideshowfileitemaction.so
+/V3/usr/lib64/qt5/plugins/kf5/parts/gvpart.so
 /usr/lib64/libgwenviewlib.so.4.97.0
 /usr/lib64/libgwenviewlib.so.5
 /usr/lib64/qt5/plugins/kf5/kfileitemaction/slideshowfileitemaction.so
