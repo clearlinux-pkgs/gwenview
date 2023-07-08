@@ -6,11 +6,11 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : gwenview
-Version  : 23.04.2
-Release  : 59
-URL      : https://download.kde.org/stable/release-service/23.04.2/src/gwenview-23.04.2.tar.xz
-Source0  : https://download.kde.org/stable/release-service/23.04.2/src/gwenview-23.04.2.tar.xz
-Source1  : https://download.kde.org/stable/release-service/23.04.2/src/gwenview-23.04.2.tar.xz.sig
+Version  : 23.04.3
+Release  : 60
+URL      : https://download.kde.org/stable/release-service/23.04.3/src/gwenview-23.04.3.tar.xz
+Source0  : https://download.kde.org/stable/release-service/23.04.3/src/gwenview-23.04.3.tar.xz
+Source1  : https://download.kde.org/stable/release-service/23.04.3/src/gwenview-23.04.3.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-3-Clause GFDL-1.2 GPL-2.0
@@ -107,15 +107,15 @@ locales components for the gwenview package.
 
 
 %prep
-%setup -q -n gwenview-23.04.2
-cd %{_builddir}/gwenview-23.04.2
+%setup -q -n gwenview-23.04.3
+cd %{_builddir}/gwenview-23.04.3
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1686940218
+export SOURCE_DATE_EPOCH=1688853710
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -142,7 +142,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1686940218
+export SOURCE_DATE_EPOCH=1688853710
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/gwenview
 cp %{_builddir}/gwenview-%{version}/CMakePresets.json.license %{buildroot}/usr/share/package-licenses/gwenview/29fb05b49e12a380545499938c4879440bd8851e || :
