@@ -9,7 +9,7 @@
 #
 Name     : gwenview
 Version  : 23.08.5
-Release  : 71
+Release  : 72
 URL      : https://download.kde.org/stable/release-service/23.08.5/src/gwenview-23.08.5.tar.xz
 Source0  : https://download.kde.org/stable/release-service/23.08.5/src/gwenview-23.08.5.tar.xz
 Source1  : https://download.kde.org/stable/release-service/23.08.5/src/gwenview-23.08.5.tar.xz.sig
